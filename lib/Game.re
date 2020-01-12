@@ -75,3 +75,16 @@ let scoreWhenPoints = (current, winner) =>
       otherPlayerPoint: current |> pointFor(other(winner))
     })
   };
+
+  let score = (current, winner) =>
+  switch current {
+  | Points(p) => scoreWhenPoints(p, winner)
+  | Forty(f) => scoreWhenForty(f, winner)
+  | Deuce => scoreWhenDeuce(winner)
+  | Advantage(a) => scoreWhenAdvantage(a, winner)
+  | Game(g) => scoreWhenGame(g)
+  };
+
+  let scoreWhenGame = winner => Game(winner);
+
+  let newGame = Points({playerOne: Love, playerTwo: Love});

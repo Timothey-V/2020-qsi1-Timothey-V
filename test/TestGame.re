@@ -66,11 +66,23 @@ describe("Test Game transitions", ({test}) => {
   test("Given player: 0 | other : 15 when other wins then score is 0/30",
   ({expect}) => {
     /* YOUR TURN TO DO THE TEST */
+    let loveFifteen = {playerOne: Love, playerTwo: Fifteen};
+    let loveThirty = {playerOne: Love, playerTwo: Thirty};
+    expect.equal(
+      scoreWhenPoints(loveFifteen, PlayerTwo), /*Ne fonctionne pas : other(loveFifteen.player)*/
+      Points(loveThirty)
+    );
   });
   test(
     "Given player: 30 | other : 15 when player wins then score is 40/15",
     ({expect}) => {
     /* YOUR TURN TO DO THE TEST */
+    let thirtyFifteen = {playerOne: Thirty, playerTwo: Fifteen};
+    let fortyFifteen = {player: PlayerOne, otherPlayerPoint: Fifteen};
+    expect.equal(
+      scoreWhenPoints(thirtyFifteen, PlayerOne),
+      Forty(fortyFifteen)
+    );
   });
   
 });
