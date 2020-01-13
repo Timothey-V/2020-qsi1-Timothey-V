@@ -76,7 +76,9 @@ let scoreWhenPoints = (current, winner) =>
     })
   };
 
-  let score = (current, winner) =>
+let scoreWhenGame = winner => Game(winner);
+
+let score = (current, winner) =>
   switch current {
   | Points(p) => scoreWhenPoints(p, winner)
   | Forty(f) => scoreWhenForty(f, winner)
@@ -85,6 +87,29 @@ let scoreWhenPoints = (current, winner) =>
   | Game(g) => scoreWhenGame(g)
   };
 
-  let scoreWhenGame = winner => Game(winner);
+let newGame = Points({playerOne: Love, playerTwo: Love});
 
-  let newGame = Points({playerOne: Love, playerTwo: Love});
+let string_of_player = (player) =>
+  switch player {
+  | PlayerOne => "Player One"
+  | PlayerTwo => "Player Two"
+  | _ => "Not a player"
+  };
+
+let string_of_point = (points) => 
+switch points {
+| Love => "Zero or 0"
+| Fifteen => "Fifteen or 15"
+| Thirty => "Thirty or 30"
+| _ => "Not a points"
+};
+
+let string_of_score = (score) => 
+switch score {
+| Points(pointsData) => string_of_point(pointsData.playerOne) ++" / "++ string_of_point(pointsData.playerTwo)
+| Forty(fortyData) => string_of_player(fortyData.player) ++ "has 40 points, the other player has "++ string_of_point(fortyData.otherPlayerPoint)
+| Deuce => "This is a Deuce"
+| Advantage(player) => "This is Advantage for the player :" ++ string_of_player(player)
+| Game(player) => "The Game is won by" ++ string_of_player(player)
+| _ => "Not a Score"
+};
